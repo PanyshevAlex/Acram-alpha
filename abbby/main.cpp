@@ -143,6 +143,13 @@ Expr diff(Expr expression) {
             }
             if (expression.node == "*") {
                 //(f(x) * g(x))' -> f'(x) * g(x) + f(x) * g'(x)
+                Expr firstdiff = diff(expression.leaves[0]);
+                Expr seconddiff = diff(expression.leaves[1]);
+                Expr *left;
+                Expr *right;
+                if (firstdiff.node == "0") {
+                    
+                }
                 return Expr("+", Expr("*", diff(expression.leaves[0]), expression.leaves[1]), Expr("*", expression.leaves[0], diff(expression.leaves[1])));
             }
             if (expression.node == "/") {
@@ -178,11 +185,27 @@ std::string make_latex_expr(Expr expression) {
             if (expression.node == "+" || expression.node == "-") {
                 return make_latex_expr(expression.leaves[0]) + expression.node + make_latex_expr(expression.leaves[1]);
             }
-            if (expression.node == "*")
-                return "(" + make_latex_expr(expression.leaves[0]) + ")" + "\\cdot " + "(" + make_latex_expr(expression.leaves[1]) + ")";
+            if (expression.node == "*") {
+                std::string mul_return = "";
+                if (expression.leaves[0].leaves.size() == 2 || expression.leaves[0].node == "-")
+                    mul_return += "(" + make_latex_expr(expression.leaves[0]) + ")";
+                else
+                    mul_return += make_latex_expr(expression.leaves[0]);
+                mul_return += "\\cdot ";
+                if (expression.leaves[1].leaves.size() == 2 || expression.leaves[1].node == "-")
+                    mul_return += "(" + make_latex_expr(expression.leaves[1]) + ")";
+                else
+                    mul_return += make_latex_expr(expression.leaves[1]);
+                return mul_return;
+            }
+            if (expression.node == "/") {
+                return "\\frac{" + make_latex_expr(expression.leaves[0]) + "}{" + make_latex_expr(expression.leaves[1]) + "} ";
+            }
+            if (expression.node == "^") {
+                return make_latex_expr(expression.leaves[0]) + "^{" + make_latex_expr(expression.leaves[1]) + "}";
+            }
+                
         }
-            
-
     }
     
     
@@ -204,7 +227,7 @@ std::string make_latex(Expr expr) {
 
 int main() {
     
-    Parser pars("sin(2*x)");
+    Parser pars("sin(2*x)/x");
     Expr myExpr = pars.parse();
     Expr d = diff(myExpr);
     
@@ -215,6 +238,7 @@ int main() {
         std::string info;
         
         texcaller::convert(pdf, info, make_latex(d), "LaTeX", "PDF", 5);
+        std::cout << make_latex(d) << std::endl;
         std::ofstream fout("output.pdf", std::ios::out | std::ios::trunc);
         if (!fout.is_open()) {
             std::cout << "not open" << std::endl;
