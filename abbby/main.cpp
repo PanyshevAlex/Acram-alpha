@@ -2,7 +2,9 @@
 #include <string>
 #include <vector>
 #include <cctype>
-#include <texcaller.h>
+#include "texcaller.h"
+#include <fstream>
+
 struct Expr {
     std::string node;
     std::vector<Expr> leaves;
@@ -154,14 +156,77 @@ Expr diff(Expr expression) {
     }
     return expression;
 }
+
+//
+
+std::string make_latex_expr(Expr expression) {
+    switch (expression.leaves.size()) {
+        case 0: {
+            return expression.node;
+        }
+        case 1: {
+            if (expression.node == "sin" || expression.node == "cos") {
+                // sin(f(x)) -> "\\sin{(f(x))}"
+                return "\\" + expression.node + "{(" + make_latex_expr(expression.leaves[0]) + ")}";
+            }
+            if (expression.node == "+" || expression.node == "-") {
+                // -f(x) -> -f(x) and (+f(x))' -> +f'(x)
+                return expression.node + make_latex_expr(expression.leaves[0]);
+            }
+        }
+        case 2: {
+            if (expression.node == "+" || expression.node == "-") {
+                return make_latex_expr(expression.leaves[0]) + expression.node + make_latex_expr(expression.leaves[1]);
+            }
+            if (expression.node == "*")
+                return "(" + make_latex_expr(expression.leaves[0]) + ")" + "\\cdot " + "(" + make_latex_expr(expression.leaves[1]) + ")";
+        }
+            
+
+    }
     
+    
+    return "";
+}
+
+std::string make_latex(Expr expr) {
+    std::string expression =
+        "\\documentclass[a4paper,12pt]{article} "
+        "\\usepackage[T2A]{fontenc}"
+        "\\usepackage[utf8]{inputenc}"
+        "\\usepackage[english,russian]{babel}"
+        "\\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}"
+        "\\begin{document}"
+        "$" + make_latex_expr(expr) + "$"
+        "\\end{document}";
+    return expression;
+}
+
 int main() {
     
-    Parser pars("(1+2)3");
+    Parser pars("sin(2*x)");
     Expr myExpr = pars.parse();
     Expr d = diff(myExpr);
-    std::cout << myExpr.node << std::endl;
-
+    
+   
+    
+    try {
+        std::string pdf;
+        std::string info;
+        
+        texcaller::convert(pdf, info, make_latex(d), "LaTeX", "PDF", 5);
+        std::ofstream fout("output.pdf", std::ios::out | std::ios::trunc);
+        if (!fout.is_open()) {
+            std::cout << "not open" << std::endl;
+            return 1;
+        }
+        fout << pdf;
+        fout.close();
+        
+    } catch (std::domain_error &e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+     
     return 0;
  
 }
