@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C369642926483689003D434A /* texcaller.c in Sources */ = {isa = PBXBuildFile; fileRef = C369642726483689003D434A /* texcaller.c */; };
 		C36B783F264A248E00E269BC /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B783D264A248E00E269BC /* parser.cpp */; };
+		C36B7842264A2AA800E269BC /* makelatex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B7840264A2AA800E269BC /* makelatex.cpp */; };
 		C3C02EFF2628767D00845F4E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3C02EFE2628767D00845F4E /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,8 @@
 		C369642826483689003D434A /* texcaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texcaller.h; sourceTree = "<group>"; };
 		C36B783D264A248E00E269BC /* parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
 		C36B783E264A248E00E269BC /* parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = parser.hpp; sourceTree = "<group>"; };
+		C36B7840264A2AA800E269BC /* makelatex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = makelatex.cpp; sourceTree = "<group>"; };
+		C36B7841264A2AA800E269BC /* makelatex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = makelatex.hpp; sourceTree = "<group>"; };
 		C3C02EFB2628767D00845F4E /* abbby */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = abbby; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C02EFE2628767D00845F4E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +71,8 @@
 				C3C02EFE2628767D00845F4E /* main.cpp */,
 				C36B783D264A248E00E269BC /* parser.cpp */,
 				C36B783E264A248E00E269BC /* parser.hpp */,
+				C36B7840264A2AA800E269BC /* makelatex.cpp */,
+				C36B7841264A2AA800E269BC /* makelatex.hpp */,
 			);
 			path = abbby;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			files = (
 				C369642926483689003D434A /* texcaller.c in Sources */,
 				C36B783F264A248E00E269BC /* parser.cpp in Sources */,
+				C36B7842264A2AA800E269BC /* makelatex.cpp in Sources */,
 				C3C02EFF2628767D00845F4E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

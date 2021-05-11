@@ -8,7 +8,7 @@
 
 #ifndef parser_hpp
 #define parser_hpp
-
+#pragma once
 #include <stdio.h>
 #include <string>
 #include <vector>
