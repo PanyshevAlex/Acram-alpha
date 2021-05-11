@@ -3,8 +3,9 @@
 #include <vector>
 #include <cctype>
 #include "texcaller.h"
+#include "parser.hpp"
 #include <fstream>
-
+/*
 struct Expr {
     std::string node;
     std::vector<Expr> leaves;
@@ -12,9 +13,55 @@ struct Expr {
     Expr(std::string node, Expr leaf) : node(node) {
         leaves.push_back(leaf);
     }
-    Expr(std::string node, Expr leaf1, Expr leaf2) : node(node) {
-        leaves.push_back(leaf1);
-        leaves.push_back(leaf2);
+    Expr(std::string inode, Expr leaf1, Expr leaf2) {
+        if (inode == "+") {
+            if (leaf1.node == "0")
+                node = leaf2.node;
+            else if (leaf2.node == "0")
+                node = leaf1.node;
+            else {
+                node = inode;
+                leaves.push_back(leaf1);
+                leaves.push_back(leaf2);
+            }
+        }
+        else if (inode == "*") {
+            if (leaf1.node == "0")
+                node = "0";
+            else if (leaf2.node == "0")
+                node = "0";
+            else if (leaf1.node == "1") {
+                node = leaf2.node;
+                if (leaf2.leaves.size() == 1) {
+                    leaves.push_back(leaf2.leaves[0]);
+                }
+                if (leaf2.leaves.size() == 2) {
+                    leaves.push_back(leaf2.leaves[0]);
+                    leaves.push_back(leaf2.leaves[1]);
+                }
+            }
+            else if (leaf2.node == "1") {
+                node = leaf1.node;
+                if (leaf1.leaves.size() == 1) {
+                    leaves.push_back(leaf1.leaves[0]);
+                }
+                if (leaf1.leaves.size() == 2) {
+                    leaves.push_back(leaf1.leaves[0]);
+                    leaves.push_back(leaf1.leaves[1]);
+                }
+            }
+            else {
+                node = inode;
+                leaves.push_back(leaf1);
+                leaves.push_back(leaf2);
+            }
+        }
+        else {
+            node = inode;
+            leaves.push_back(leaf1);
+            leaves.push_back(leaf2);
+        }
+        
     }
 };
 // TODO: this parser allows expressions like (2+3)2
@@ -110,7 +157,7 @@ Expr Parser::parse_two_leaves(int priority) {
 Expr Parser::parse() {
     return parse_two_leaves(0);
 }
-
+*/
 
 Expr diff(Expr expression) {
     switch (expression.leaves.size()) {
@@ -142,19 +189,17 @@ Expr diff(Expr expression) {
                 return Expr(expression.node, diff(expression.leaves[0]), diff(expression.leaves[1]));
             }
             if (expression.node == "*") {
-                //(f(x) * g(x))' -> f'(x) * g(x) + f(x) * g'(x)
-                Expr firstdiff = diff(expression.leaves[0]);
-                Expr seconddiff = diff(expression.leaves[1]);
-                Expr *left;
-                Expr *right;
-                if (firstdiff.node == "0") {
-                    
-                }
                 return Expr("+", Expr("*", diff(expression.leaves[0]), expression.leaves[1]), Expr("*", expression.leaves[0], diff(expression.leaves[1])));
             }
             if (expression.node == "/") {
                 // (f(x) / g(x))' -> (f'*g - f*g') / (g^2)
                 return Expr("/", Expr("-", Expr("*", diff(expression.leaves[0]), expression.leaves[1]), Expr("*", expression.leaves[0], diff(expression.leaves[1]))), Expr("^", expression.leaves[1], Expr("2")));
+            }
+            if (expression.node == "^") {
+                if (std::isdigit(expression.leaves[1].node[0])) {
+                    int a = std::stoi(expression.leaves[1].node);
+                    return Expr("*", Expr("*", expression.leaves[1], Expr("^", expression.leaves[0], std::to_string(a - 1))), diff(expression.leaves[0]));
+                }
             }
             
         }
@@ -202,17 +247,19 @@ std::string make_latex_expr(Expr expression) {
                 return "\\frac{" + make_latex_expr(expression.leaves[0]) + "}{" + make_latex_expr(expression.leaves[1]) + "} ";
             }
             if (expression.node == "^") {
-                return make_latex_expr(expression.leaves[0]) + "^{" + make_latex_expr(expression.leaves[1]) + "}";
+                std::string left = make_latex_expr(expression.leaves[0]);
+                std::string right = make_latex_expr(expression.leaves[1]);
+                if (expression.leaves[0].leaves.size() == 0)
+                    return left + "^{" + right + "}";
+                else
+                    return "(" + left + ")" + "^{" + right + "}";
             }
-                
         }
     }
-    
-    
     return "";
 }
 
-std::string make_latex(Expr expr) {
+std::string make_latex(Expr expr, Expr diffexpr) {
     std::string expression =
         "\\documentclass[a4paper,12pt]{article} "
         "\\usepackage[T2A]{fontenc}"
@@ -220,14 +267,15 @@ std::string make_latex(Expr expr) {
         "\\usepackage[english,russian]{babel}"
         "\\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}"
         "\\begin{document}"
-        "$" + make_latex_expr(expr) + "$"
+        "$" + make_latex_expr(expr) + "\\rightarrow $"
+        "$" + make_latex_expr(diffexpr) + "$"
         "\\end{document}";
     return expression;
 }
 
 int main() {
-    
-    Parser pars("sin(2*x)/x");
+    //Expr test = Expr("*", Expr("2"), Expr("2"));
+    Parser pars("(x*x)/x");
     Expr myExpr = pars.parse();
     Expr d = diff(myExpr);
     
@@ -237,8 +285,8 @@ int main() {
         std::string pdf;
         std::string info;
         
-        texcaller::convert(pdf, info, make_latex(d), "LaTeX", "PDF", 5);
-        std::cout << make_latex(d) << std::endl;
+        texcaller::convert(pdf, info, make_latex(myExpr, d), "LaTeX", "PDF", 5);
+
         std::ofstream fout("output.pdf", std::ios::out | std::ios::trunc);
         if (!fout.is_open()) {
             std::cout << "not open" << std::endl;
