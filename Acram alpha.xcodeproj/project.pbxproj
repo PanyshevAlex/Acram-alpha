@@ -37,6 +37,7 @@
 		C36B7846264C1B6200E269BC /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		C36B784B264C1F2A00E269BC /* makelatex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = makelatex.hpp; sourceTree = "<group>"; };
 		C36B784C264C1F2A00E269BC /* makelatex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makelatex.cpp; sourceTree = "<group>"; };
+		C36B784F264C504000E269BC /* myvector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = myvector.hpp; sourceTree = "<group>"; };
 		C3C02EFB2628767D00845F4E /* Acram alpha */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Acram alpha"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C02EFE2628767D00845F4E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +82,7 @@
 				C36B783E264A248E00E269BC /* parser.hpp */,
 				C36B7843264BEF2700E269BC /* mystring.cpp */,
 				C36B7844264BEF2700E269BC /* mystring.hpp */,
+				C36B784F264C504000E269BC /* myvector.hpp */,
 			);
 			path = "Acram alpha";
 			sourceTree = "<group>";

@@ -68,14 +68,14 @@ Expr diff(Expr expression) {
 
 int main() {
     
+
     std::string input;
     std::cin >> input;
     mystring myinput = mystring(input);
     Parser pars(myinput.c_str());
-    
     Expr myExpr = pars.parse();
     Expr d = diff(myExpr);
-   
+    
     
     try {
         std::string pdf;

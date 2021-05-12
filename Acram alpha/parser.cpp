@@ -8,6 +8,8 @@
 
 #include "parser.hpp"
 
+Expr::Expr() : node("\0") {};
+
 Expr::Expr(mystring node) : node(node) {};
 
 Expr::Expr(mystring node, Expr leaf) : node(node) {

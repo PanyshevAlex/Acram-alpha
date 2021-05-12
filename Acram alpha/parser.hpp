@@ -14,11 +14,13 @@
 #include <vector>
 #include <cctype>
 #include "mystring.hpp"
+#include "myvector.hpp"
 #endif /* parser_hpp */
 
 struct Expr {
     mystring node;
-    std::vector<Expr> leaves;
+    Vector<Expr> leaves;
+    Expr();
     Expr(mystring node);
     Expr(mystring node, Expr leaf);
     Expr(mystring inode, Expr leaf1, Expr leaf2);
