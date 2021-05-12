@@ -55,6 +55,18 @@ Expr diff(Expr expression) {
             if (expression.node == "cot") {
                 return Expr("-", Expr("*", Expr("/", Expr("1"), Expr("^", Expr("sin", expression.leaves[0]), Expr("2"))), diff(expression.leaves[0])));
             }
+            if (expression.node == "arcsin") {
+                return Expr("*", Expr("/", Expr("1"), Expr("sqrt", Expr("-", Expr("1"), Expr("^", expression.leaves[0], Expr("2"))))), diff(expression.leaves[0]));
+            }
+            if (expression.node == "arccos") {
+                return Expr("-", Expr("*", Expr("/", Expr("1"), Expr("sqrt", Expr("-", Expr("1"), Expr("^", expression.leaves[0], Expr("2"))))), diff(expression.leaves[0])));
+            }
+            if (expression.node == "arctan") {
+                return Expr("*", Expr("/", Expr("1"), Expr("+", Expr("1"), Expr("^", expression.leaves[0], Expr("2")))), diff(expression.leaves[0]));
+            }
+            if (expression.node == "arcctg") {
+                return Expr("-", Expr("*", Expr("/", Expr("1"), Expr("+", Expr("1"), Expr("^", expression.leaves[0], Expr("2")))), diff(expression.leaves[0])));
+            }
         }
         case 2: {
             if (expression.node == "+" || expression.node == "-") {

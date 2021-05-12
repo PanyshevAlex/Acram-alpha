@@ -15,7 +15,7 @@ bool is_expression(Expr expr) {
 }
 
 mystring tex_one_leaves(Expr expression) {
-    if (expression.node == "sin" || expression.node == "cos" || expression.node == "exp" || expression.node == "sqrt" || expression.node == "ln" || expression.node == "tan" || expression.node == "cot") {
+    if (expression.node == "sin" || expression.node == "cos" || expression.node == "exp" || expression.node == "sqrt" || expression.node == "ln" || expression.node == "tan" || expression.node == "cot" || expression.node == "arcsin" || expression.node == "arccos" || expression.node == "arctan" || expression.node == "arcctg") {
         // sin(f(x)) -> "\\sin{(f(x))}"
         return mystring("\\") + expression.node + "{(" + make_latex_expr(expression.leaves[0]) + ")}";
     }
