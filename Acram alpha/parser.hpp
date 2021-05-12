@@ -1,6 +1,6 @@
 //
 //  parser.hpp
-//  abbby
+//  Acram alpha
 //
 //  Created by Панышев Александр Сергеевич on 11.05.2021.
 //  Copyright © 2021 Панышев Александр Сергеевич. All rights reserved.
@@ -13,15 +13,15 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include "mystring.hpp"
 #endif /* parser_hpp */
 
-
 struct Expr {
-    std::string node;
+    mystring node;
     std::vector<Expr> leaves;
-    Expr(std::string node);
-    Expr(std::string node, Expr leaf);
-    Expr(std::string inode, Expr leaf1, Expr leaf2);
+    Expr(mystring node);
+    Expr(mystring node, Expr leaf);
+    Expr(mystring inode, Expr leaf1, Expr leaf2);
 };
 
 class Parser {
@@ -31,9 +31,8 @@ public:
     
 private:
     const char* input;
-    std::string parse_node();
+    mystring parse_node();
     Expr parse_one_leaf();
-    int get_priority(std::string node);
+    int get_priority(mystring node);
     Expr parse_two_leaves(int priority);
 };
-

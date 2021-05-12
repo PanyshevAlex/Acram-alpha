@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		C369642926483689003D434A /* texcaller.c in Sources */ = {isa = PBXBuildFile; fileRef = C369642726483689003D434A /* texcaller.c */; };
 		C36B783F264A248E00E269BC /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B783D264A248E00E269BC /* parser.cpp */; };
-		C36B7842264A2AA800E269BC /* makelatex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B7840264A2AA800E269BC /* makelatex.cpp */; };
+		C36B7845264BEF2700E269BC /* mystring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B7843264BEF2700E269BC /* mystring.cpp */; };
+		C36B7849264C1B6300E269BC /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = C36B7846264C1B6200E269BC /* Makefile */; };
+		C36B784D264C1F2A00E269BC /* makelatex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C36B784C264C1F2A00E269BC /* makelatex.cpp */; };
 		C3C02EFF2628767D00845F4E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C3C02EFE2628767D00845F4E /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +32,12 @@
 		C369642826483689003D434A /* texcaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texcaller.h; sourceTree = "<group>"; };
 		C36B783D264A248E00E269BC /* parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
 		C36B783E264A248E00E269BC /* parser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = parser.hpp; sourceTree = "<group>"; };
-		C36B7840264A2AA800E269BC /* makelatex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = makelatex.cpp; sourceTree = "<group>"; };
-		C36B7841264A2AA800E269BC /* makelatex.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = makelatex.hpp; sourceTree = "<group>"; };
-		C3C02EFB2628767D00845F4E /* abbby */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = abbby; sourceTree = BUILT_PRODUCTS_DIR; };
+		C36B7843264BEF2700E269BC /* mystring.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mystring.cpp; sourceTree = "<group>"; };
+		C36B7844264BEF2700E269BC /* mystring.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mystring.hpp; sourceTree = "<group>"; };
+		C36B7846264C1B6200E269BC /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		C36B784B264C1F2A00E269BC /* makelatex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = makelatex.hpp; sourceTree = "<group>"; };
+		C36B784C264C1F2A00E269BC /* makelatex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = makelatex.cpp; sourceTree = "<group>"; };
+		C3C02EFB2628767D00845F4E /* Acram alpha */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Acram alpha"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C02EFE2628767D00845F4E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +55,7 @@
 		C3C02EF22628767D00845F4E = {
 			isa = PBXGroup;
 			children = (
-				C3C02EFD2628767D00845F4E /* abbby */,
+				C3C02EFD2628767D00845F4E /* Acram alpha */,
 				C3C02EFC2628767D00845F4E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,31 +63,34 @@
 		C3C02EFC2628767D00845F4E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3C02EFB2628767D00845F4E /* abbby */,
+				C3C02EFB2628767D00845F4E /* Acram alpha */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C3C02EFD2628767D00845F4E /* abbby */ = {
+		C3C02EFD2628767D00845F4E /* Acram alpha */ = {
 			isa = PBXGroup;
 			children = (
+				C36B784C264C1F2A00E269BC /* makelatex.cpp */,
+				C36B784B264C1F2A00E269BC /* makelatex.hpp */,
+				C36B7846264C1B6200E269BC /* Makefile */,
 				C369642726483689003D434A /* texcaller.c */,
 				C369642826483689003D434A /* texcaller.h */,
 				C3C02EFE2628767D00845F4E /* main.cpp */,
 				C36B783D264A248E00E269BC /* parser.cpp */,
 				C36B783E264A248E00E269BC /* parser.hpp */,
-				C36B7840264A2AA800E269BC /* makelatex.cpp */,
-				C36B7841264A2AA800E269BC /* makelatex.hpp */,
+				C36B7843264BEF2700E269BC /* mystring.cpp */,
+				C36B7844264BEF2700E269BC /* mystring.hpp */,
 			);
-			path = abbby;
+			path = "Acram alpha";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C3C02EFA2628767D00845F4E /* abbby */ = {
+		C3C02EFA2628767D00845F4E /* Acram alpha */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C3C02F022628767D00845F4E /* Build configuration list for PBXNativeTarget "abbby" */;
+			buildConfigurationList = C3C02F022628767D00845F4E /* Build configuration list for PBXNativeTarget "Acram alpha" */;
 			buildPhases = (
 				C3C02EF72628767D00845F4E /* Sources */,
 				C3C02EF82628767D00845F4E /* Frameworks */,
@@ -92,9 +100,9 @@
 			);
 			dependencies = (
 			);
-			name = abbby;
+			name = "Acram alpha";
 			productName = abbby;
-			productReference = C3C02EFB2628767D00845F4E /* abbby */;
+			productReference = C3C02EFB2628767D00845F4E /* Acram alpha */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -111,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C3C02EF62628767D00845F4E /* Build configuration list for PBXProject "abbby" */;
+			buildConfigurationList = C3C02EF62628767D00845F4E /* Build configuration list for PBXProject "Acram alpha" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C3C02EFA2628767D00845F4E /* abbby */,
+				C3C02EFA2628767D00845F4E /* Acram alpha */,
 			);
 		};
 /* End PBXProject section */
@@ -134,9 +142,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36B784D264C1F2A00E269BC /* makelatex.cpp in Sources */,
+				C36B7849264C1B6300E269BC /* Makefile in Sources */,
 				C369642926483689003D434A /* texcaller.c in Sources */,
 				C36B783F264A248E00E269BC /* parser.cpp in Sources */,
-				C36B7842264A2AA800E269BC /* makelatex.cpp in Sources */,
+				C36B7845264BEF2700E269BC /* mystring.cpp in Sources */,
 				C3C02EFF2628767D00845F4E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +286,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C3C02EF62628767D00845F4E /* Build configuration list for PBXProject "abbby" */ = {
+		C3C02EF62628767D00845F4E /* Build configuration list for PBXProject "Acram alpha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3C02F002628767D00845F4E /* Debug */,
@@ -285,7 +295,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3C02F022628767D00845F4E /* Build configuration list for PBXNativeTarget "abbby" */ = {
+		C3C02F022628767D00845F4E /* Build configuration list for PBXNativeTarget "Acram alpha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3C02F032628767D00845F4E /* Debug */,
