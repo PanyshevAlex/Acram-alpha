@@ -19,7 +19,7 @@
 
 struct Expr {
     mystring node;
-    Vector<Expr> leaves;
+    myvector<Expr> leaves;
     Expr();
     Expr(mystring node);
     Expr(mystring node, Expr leaf);
