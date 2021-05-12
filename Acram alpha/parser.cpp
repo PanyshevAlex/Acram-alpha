@@ -82,7 +82,7 @@ mystring Parser::parse_node() {
         return digit;
     }
     
-    static const mystring nodes[] = {"+", "-", "*", "/", "^", "sin", "cos", "(", ")", "x"};
+    static const mystring nodes[] = {"+", "-", "*", "/", "^", "sin", "cos", "(", ")", "x", "e", "pi"};
     
     for (auto& i : nodes) {
         if (std::strncmp(input, i.c_str(), i.length()) == 0) {
@@ -99,7 +99,7 @@ Expr Parser::parse_one_leaf() {
     auto element = parse_node();
     if (element.is_empty())
         throw std::runtime_error("Unexpected value");
-    if (std::isdigit(element[0]) || element == "x")
+    if (std::isdigit(element[0]) || element == "x" || element == "e" || element == "pi")
         return Expr(element);
     if (element == "(") {
         auto sub_Expr = parse();

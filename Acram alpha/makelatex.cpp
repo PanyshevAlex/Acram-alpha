@@ -65,6 +65,8 @@ mystring tex_two_leaves(Expr expression) {
 mystring make_latex_expr(Expr expression) {
     switch (expression.leaves.size()) {
         case 0: {
+            if (expression.node == "pi")
+                return mystring("\\") + expression.node;
             return expression.node;
         }
         case 1: {

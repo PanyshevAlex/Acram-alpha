@@ -20,7 +20,7 @@
 Expr diff(Expr expression) {
     switch (expression.leaves.size()) {
         case 0: {
-            if (std::isdigit(expression.node[0]))
+            if (std::isdigit(expression.node[0]) || expression.node == "e" || expression.node == "pi")
                 // number' -> 0
                 return Expr("0");
             if (expression.node == "x")
