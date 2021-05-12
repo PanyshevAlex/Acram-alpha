@@ -95,7 +95,11 @@ Expr diff(Expr expression) {
 
 int main() {
     
-
+    std::string manual =
+        "In function notation you can use one variable (always use x), brackets, pi number (pi), exponent(e), "
+        "operations: addition +, subtraction -, division /, multiplication *, power ^."
+        "You can use following common functions: sqrt - square root,exp - power of exponent,ln - logarithm to base e,sin - sine,cos - cosine,tg - tangent,ctg - cotangent,arcsin - arcsine,arccos - arccosine,arctg - arctangent,arcctg - arccotangent,";
+    std::cout << manual << std::endl;
     std::string input;
     std::cin >> input;
     mystring myinput = mystring(input);
