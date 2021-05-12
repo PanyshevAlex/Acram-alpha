@@ -82,7 +82,7 @@ mystring Parser::parse_node() {
         return digit;
     }
     
-    static const mystring nodes[] = {"+", "-", "*", "/", "^", "sin", "cos", "(", ")", "x", "e", "pi"};
+    static const mystring nodes[] = {"+", "-", "*", "/", "^", "sin", "cos", "(", ")", "x", "exp", "e", "pi", "sqrt", "ln", "tan", "cot"};
     
     for (auto& i : nodes) {
         if (std::strncmp(input, i.c_str(), i.length()) == 0) {
@@ -125,6 +125,16 @@ int Parser::get_priority(mystring node) {
     if (node == "sin")
         return 3;
     if (node == "cos")
+        return 3;
+    if (node == "exp")
+        return 3;
+    if (node == "sqrt")
+        return 3;
+    if (node == "ln")
+        return 3;
+    if (node == "tan")
+        return 3;
+    if (node == "cot")
         return 3;
     return 0;
 }

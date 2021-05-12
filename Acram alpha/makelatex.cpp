@@ -15,7 +15,7 @@ bool is_expression(Expr expr) {
 }
 
 mystring tex_one_leaves(Expr expression) {
-    if (expression.node == "sin" || expression.node == "cos") {
+    if (expression.node == "sin" || expression.node == "cos" || expression.node == "exp" || expression.node == "sqrt" || expression.node == "ln" || expression.node == "tan" || expression.node == "cot") {
         // sin(f(x)) -> "\\sin{(f(x))}"
         return mystring("\\") + expression.node + "{(" + make_latex_expr(expression.leaves[0]) + ")}";
     }
@@ -37,7 +37,7 @@ mystring tex_two_leaves(Expr expression) {
     }
     if (expression.node == "*") {
         mystring mul_return = "";
-        if (expression.leaves[0].leaves.size() == 2 || expression.leaves[0].node == "-")
+        if ((expression.leaves[0].leaves.size() == 2) || expression.leaves[0].node == "-")
             mul_return = mul_return + "(" + make_latex_expr(expression.leaves[0]) + ")";
         else
             mul_return = mul_return + make_latex_expr(expression.leaves[0]);

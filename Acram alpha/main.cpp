@@ -40,6 +40,21 @@ Expr diff(Expr expression) {
                 // (-f(x))' -> -f'(x) and (+f(x))' -> +f'(x)
                 return Expr(expression.node, diff(expression.leaves[0]));
             }
+            if (expression.node == "exp") {
+                return Expr("*", Expr("exp", expression.leaves[0]), diff(expression.leaves[0]));
+            }
+            if (expression.node == "sqrt") {
+                return Expr("*", Expr("/", Expr("1"), Expr("*", Expr("2"), Expr("sqrt", expression.leaves[0]))), diff(expression.leaves[0]));
+            }
+            if (expression.node == "ln") {
+                return Expr("*", Expr("/", Expr("1"), expression.leaves[0]), diff(expression.leaves[0]));
+            }
+            if (expression.node == "tan") {
+                return Expr("*", Expr("/", Expr("1"), Expr("^", Expr("cos", expression.leaves[0]), Expr("2"))), diff(expression.leaves[0]));
+            }
+            if (expression.node == "cot") {
+                return Expr("-", Expr("*", Expr("/", Expr("1"), Expr("^", Expr("sin", expression.leaves[0]), Expr("2"))), diff(expression.leaves[0])));
+            }
         }
         case 2: {
             if (expression.node == "+" || expression.node == "-") {
