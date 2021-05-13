@@ -88,7 +88,8 @@ mystring make_latex(Expr expr, Expr diffexpr) {
         "\\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}"
         "\\begin{document}"
         "$") + make_latex_expr(expr) + "\\rightarrow $"
-        "$" + make_latex_expr(diffexpr) + "$"
+        "$" + make_latex_expr(diffexpr) + "$\\\\"
+        "Утрем нос Стивену Вольфраму!"
         "\\end{document}";
     return expression;
 }
